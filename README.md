@@ -70,8 +70,6 @@ The Dragging Line package enables users to implement an interactive line-drawing
 3. **Validation Fails:**
    - Verify that the node IDs and values are set correctly.
 
-## Credits
-Developed by [Your Name/Team Name]. For support or questions, please contact [Your Contact Information].
 
 ## License
 This package is open-source and free for personal and commercial use. Attribution is appreciated but not required.
