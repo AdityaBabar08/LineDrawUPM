@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5963236744633253997}
   - component: {fileID: 5793394195651122923}
   - component: {fileID: 6694463156941196892}
+  - component: {fileID: 735022264478536854}
   m_Layer: 10
   m_Name: NodePrefab
   m_TagString: Node
@@ -121,6 +122,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &735022264478536854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107318845293099590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5841456e666f6e4fa02a57ffeffbc68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeID: 0
+  nodeValue: 
+  nodetext: {fileID: 8595929756245954158}
 --- !u!1 &3482834860781561090
 GameObject:
   m_ObjectHideFlags: 0
