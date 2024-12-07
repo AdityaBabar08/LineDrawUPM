@@ -11,6 +11,7 @@ public class DraggingLine : MonoBehaviour
     [SerializeField] private Material lineMaterial;
     [SerializeField] private float lineWidth = 0.1f;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private string requiredTag = "Node";
 
     private List<GameObject> selectedNodes = new List<GameObject>();
     private List<Vector3> linePositions = new List<Vector3>();
@@ -19,7 +20,7 @@ public class DraggingLine : MonoBehaviour
 
     // C# action events
     public event Action OnLineStarted;
-    public event Action OnLineEnded;
+    public event Action<string> OnLineEnded;
     public event Action<Vector3[]> OnLineUpdated;
 
     public bool IsSolved { get; private set; }
@@ -87,7 +88,7 @@ public class DraggingLine : MonoBehaviour
         isDragging = false;
         ValidatePattern();
         ResetLine();
-        OnLineEnded?.Invoke();
+        OnLineEnded?.Invoke(outputText.text);
     }
 
     private void StartDragging(GameObject node)
@@ -150,7 +151,7 @@ public class DraggingLine : MonoBehaviour
 
         foreach (RaycastResult result in results)
         {
-            if (result.gameObject.CompareTag("Node"))
+            if (result.gameObject.CompareTag(requiredTag))
             {
                 return result.gameObject;
             }
