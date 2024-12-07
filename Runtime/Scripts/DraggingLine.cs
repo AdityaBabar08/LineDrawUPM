@@ -19,9 +19,9 @@ public class DraggingLine : MonoBehaviour
     private Vector3 currentMousePos;
 
     // C# action events
-    public event Action OnLineStarted;
-    public event Action<string> OnLineEnded;
-    public event Action<Vector3[]> OnLineUpdated;
+    //public event Action OnLineStarted;
+    //public event Action<string> OnLineEnded;
+    //public event Action<Vector3[]> OnLineUpdated;
 
     public bool IsSolved { get; private set; }
 
@@ -66,7 +66,7 @@ public class DraggingLine : MonoBehaviour
         if (node != null)
         {
             StartDragging(node);
-            OnLineStarted?.Invoke();
+            LineActions.TriggerLineStarted();
         }
     }
 
@@ -88,7 +88,7 @@ public class DraggingLine : MonoBehaviour
         isDragging = false;
         ValidatePattern();
         ResetLine();
-        OnLineEnded?.Invoke(outputText.text);
+        LineActions.TriggerLineEnded(outputText.text);
     }
 
     private void StartDragging(GameObject node)
@@ -140,7 +140,7 @@ public class DraggingLine : MonoBehaviour
         {
             lineRenderer.SetPosition(pointCount - 1, currentMousePos);
         }
-        OnLineUpdated?.Invoke(linePositions.ToArray());
+        //OnLineUpdated?.Invoke(linePositions.ToArray());
     }
 
     private GameObject GetNodeUnderMouse(Vector2 mousePosition)
