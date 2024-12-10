@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class DraggingLine : MonoBehaviour
 {
     [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private Text outputText;
+    [SerializeField] private List<Text> outputText;
     [SerializeField] private Material lineMaterial;
     [SerializeField] private float lineWidth = 0.1f;
     [SerializeField] private Camera mainCamera;
@@ -88,7 +88,7 @@ public class DraggingLine : MonoBehaviour
         isDragging = false;
         ValidatePattern();
         ResetLine();
-        LineActions.TriggerLineEnded(outputText.text);
+        LineActions.TriggerLineEnded(outputText.ToString());
     }
 
     private void StartDragging(GameObject node)
@@ -162,31 +162,13 @@ public class DraggingLine : MonoBehaviour
 
     private void ValidatePattern()
     {
-        List<int> pattern = new List<int>();
-        string patternValue = "";
 
-        foreach (GameObject node in selectedNodes)
+        for (int i = 0; i < selectedNodes.Count; i++)
         {
-            if (node.TryGetComponent(out LineDrawNode lineDrawNode))
-            {
-                pattern.Add(lineDrawNode.nodeID);
-                patternValue += $" {lineDrawNode.nodeValue}";
-            }
+            outputText[i].text = selectedNodes[i].GetComponentInChildren<Text>().text;
         }
 
-        Debug.Log($"Pattern completed: {string.Join("-", pattern)}");
-        outputText.text = patternValue.Trim();
 
-        if (patternValue.Trim().Equals("Please Help Me !"))
-        {
-            IsSolved = true;
-            Debug.Log($"Puzzle solved: {IsSolved}");
-            //puzzleHandler.QuestionSolved();
-        }
-        else
-        {
-            Debug.Log("Incorrect pattern. Puzzle not solved.");
-        }
     }
 
     private void ConfigureLineRenderer()
