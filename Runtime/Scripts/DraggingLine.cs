@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -88,7 +89,7 @@ public class DraggingLine : MonoBehaviour
         isDragging = false;
         ValidatePattern();
         ResetLine();
-        LineActions.TriggerLineEnded(string.Join(" ", outputText));
+        LineActions.TriggerLineEnded(string.Join(" ", outputText.Select(t => t.text)));
     }
 
     private void StartDragging(GameObject node)
