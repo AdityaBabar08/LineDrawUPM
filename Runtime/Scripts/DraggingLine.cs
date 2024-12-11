@@ -88,7 +88,7 @@ public class DraggingLine : MonoBehaviour
         isDragging = false;
         ValidatePattern();
         ResetLine();
-        LineActions.TriggerLineEnded(outputText.ToString());
+        LineActions.TriggerLineEnded(string.Join(" ", outputText));
     }
 
     private void StartDragging(GameObject node)
