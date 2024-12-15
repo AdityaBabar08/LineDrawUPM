@@ -87,6 +87,15 @@ public class DraggingLine : MonoBehaviour
     private void HandleMouseUp()
     {
         isDragging = false;
+
+        // Check if fewer than two nodes are selected
+        if (selectedNodes.Count < 2)
+        {
+            Debug.Log("Only one node selected. Ignoring line.");
+            ResetLine();
+            return;
+        }
+
         ValidatePattern();
         ResetLine();
         LineActions.TriggerLineEnded(string.Join(" ", outputText.Select(t => t.text)));
